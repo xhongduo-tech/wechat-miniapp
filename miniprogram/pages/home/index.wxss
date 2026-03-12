@@ -1,0 +1,224 @@
+/* ================= CSS Variables & Reset ================= */
+page {
+  --primary-gold: #D4AF37;
+  --primary-red: #A61B29;
+  /* 🌟 修改：兜底背景色改为深红色 */
+  --dark-bg: #5c0011; 
+  
+  /* 🌟 修改：卡片稍微透亮一点，配合红色背景 */
+  --card-bg-normal: rgba(255, 255, 255, 0.92);
+  --card-bg-game: rgba(255, 250, 235, 0.95);
+  --card-bg-speech: linear-gradient(135deg, #2b2b2b, #000000);
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: var(--dark-bg);
+  min-height: 100vh;
+}
+.container { padding: 0; margin: 0; display: block; }
+
+/* 🌟 新增：背景图全局固定 */
+.bg-image { 
+  width: 100vw; height: 100vh; 
+  position: fixed; top: 0; left: 0; 
+  z-index: 0; opacity: 1; 
+}
+
+/* 🌟 修改：蒙层改为红色透明渐变，不再是黑色 */
+.bg-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh; 
+  z-index: 0; 
+  background: linear-gradient(180deg, rgba(92, 0, 17, 0.3) 0%, rgba(92, 0, 17, 0.8) 100%);
+}
+
+/* ================= Tab Header (Sticky Pill) ================= */
+.tab-header-pill {
+  display: flex; height: 110rpx; width: 100%;
+  /* 稍微加深一点背景，防止文字在红图上看不清 */
+  background: rgba(40, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky; top: 0; z-index: 999;
+  align-items: center; padding: 0 30rpx; box-sizing: border-box;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.5);
+  gap: 30rpx;
+}
+.tab-pill-item {
+  flex: 1; height: 70rpx;
+  display: flex; align-items: center; justify-content: center;
+  color: #ccc; font-size: 28rpx; border-radius: 35rpx;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.tab-pill-item.active {
+  background: var(--primary-gold);
+  color: #1a1a1a; font-weight: 800; font-size: 30rpx;
+  box-shadow: 0 0 15rpx rgba(212, 175, 55, 0.4);
+  transform: scale(1.02);
+}
+
+/* ================= 悬浮按钮 (FAB) ================= */
+.fab-map-btn {
+  position: fixed; 
+  bottom: 80rpx; 
+  right: 40rpx;
+  width: 120rpx; height: 120rpx; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-gold), #bfa130);
+  box-shadow: 0 8rpx 25rpx rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: pulse-slow 3s infinite;
+}
+.fab-map-btn:active { transform: scale(0.9); }
+.fab-icon { font-size: 36rpx; margin-bottom: 6rpx; }
+.fab-map-btn text { font-size: 18rpx; color: #1a1a1a; font-weight: bold; line-height: 1.1; text-align: center; }
+
+@keyframes pulse-slow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); box-shadow: 0 8rpx 30rpx rgba(212, 175, 55, 0.8); }
+  100% { transform: scale(1); }
+}
+
+/* ================= Tab 0: Program List ================= */
+.program-container { 
+  min-height: calc(100vh - 100rpx); 
+  position: relative; 
+  z-index: 1; /* 确保内容在背景之上 */
+}
+
+.main-title-box { position: relative; z-index: 2; text-align: center; padding: 60rpx 0 40rpx; color: #fff; }
+.year-badge { display: inline-block; padding: 4rpx 16rpx; background: var(--primary-red); color: #fff; font-size: 24rpx; border-radius: 4rpx; margin-bottom: 10rpx; }
+.title { font-size: 56rpx; font-weight: 800; display: block; background: linear-gradient(45deg, #fff, #e6c880); -webkit-background-clip: text; color: transparent; margin: 10rpx 0; }
+.divider { display: flex; align-items: center; justify-content: center; gap: 20rpx; opacity: 0.7; font-size: 20rpx; }
+.line { width: 60rpx; height: 1px; background: #fff; }
+
+.list-box { position: relative; z-index: 2; padding: 0 40rpx; }
+
+/* 线条 */
+.timeline-line { 
+  position: absolute; left: 56rpx; top: 20rpx; bottom: 80rpx; 
+  width: 2rpx; background: rgba(255,255,255,0.3);
+  z-index: 0; 
+}
+
+/* 灯笼样式 */
+.timeline-lantern {
+  position: absolute;
+  left: -66rpx; top: 50%; transform: translateY(-50%);
+  font-size: 36rpx; 
+  line-height: 1; z-index: 5;
+  filter: drop-shadow(0 0 8rpx rgba(255, 77, 79, 0.6));
+  animation: swing 3s ease-in-out infinite; transform-origin: top center;
+}
+@keyframes swing {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  25% { transform: translateY(-50%) rotate(3deg); }
+  75% { transform: translateY(-50%) rotate(-3deg); }
+  100% { transform: translateY(-50%) rotate(0deg); }
+}
+
+.card { 
+  position: relative; margin-bottom: 30rpx; border-radius: 20rpx; padding: 30rpx; 
+  margin-left: 60rpx; 
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.2); 
+  display: flex; align-items: center; overflow: visible; 
+}
+.card:active { transform: scale(0.98); }
+
+.card-content { flex: 1; z-index: 2; }
+.card.show { background: var(--card-bg-normal); border-left: 8rpx solid var(--primary-red); }
+.card.game { background: var(--card-bg-game); border: 4rpx dashed #faad14; margin-left: 66rpx; }
+.card.game .program-name { 
+  color: #d48806; 
+  font-weight: 900; font-style: italic; font-size: 36rpx;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+}
+.game-bg-icon { position: absolute; right: -20rpx; bottom: -30rpx; font-size: 110rpx; opacity: 0.1; transform: rotate(-20deg); pointer-events: none; }
+.card.speech { background: var(--card-bg-speech); border: 1rpx solid var(--primary-gold); color: #fff; text-align: center; }
+.card.speech .card-content { display: flex; flex-direction: column; align-items: center; }
+.card.speech .program-name { color: var(--primary-gold); margin: 10rpx 0; }
+.card.speech .duration-box { position: absolute; right: 0; top: 0; border: none; background: transparent; color: rgba(255,255,255,0.4); }
+
+.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8rpx; }
+.tag-group { display: flex; gap: 12rpx; align-items: center; }
+.dept-tag { font-size: 24rpx; color: #555; font-weight: bold; }
+.type-badge { font-size: 20rpx; color: #fff; background: var(--primary-red); padding: 2rpx 10rpx; border-radius: 6rpx; }
+.duration-box { font-size: 20rpx; color: #888; border: 1rpx solid #eee; padding: 4rpx 12rpx; border-radius: 20rpx; display: flex; align-items: center; background: rgba(255,255,255,0.5); }
+.program-name { font-size: 32rpx; color: #333; font-weight: 800; line-height: 1.4; }
+.footer-text { text-align: center; color: rgba(255,255,255,0.3); font-size: 20rpx; margin-top: 10rpx; }
+
+/* ================= Tab 1: Layout Map ================= */
+.layout-container { 
+  min-height: calc(100vh - 100rpx); 
+  /* 🌟 修改：透明背景，透出底部红图 */
+  background-color: transparent; 
+  padding: 30rpx; box-sizing: border-box; display: flex; flex-direction: column; 
+  position: relative; z-index: 1;
+}
+
+.stage-area { position: relative; width: 100%; height: 120rpx; margin-bottom: 30rpx; display: flex; justify-content: center; }
+.stage-glow { position: absolute; width: 80%; height: 20rpx; bottom: 0; background: var(--primary-red); filter: blur(30rpx); opacity: 0.6; }
+.stage-box { width: 90%; height: 100%; background: linear-gradient(180deg, #5c0011 0%, #2a0006 100%); border-top: 6rpx solid var(--primary-gold); border-radius: 0 0 40rpx 40rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.5); }
+.stage-box text { color: var(--primary-gold); font-weight: 900; font-size: 32rpx; letter-spacing: 4rpx; }
+.stage-sub { font-size: 20rpx !important; opacity: 0.8; font-weight: normal !important; letter-spacing: 1rpx !important; margin-top: 6rpx; }
+
+.seating-area { display: flex; margin-bottom: 30rpx; flex: 1; }
+.sidebar-left { width: 110rpx; margin-right: 20rpx; background: rgba(255,255,255,0.05); border-radius: 16rpx; padding: 20rpx 10rpx; display: flex; flex-direction: column; gap: 16rpx; height: fit-content; z-index: 10; }
+.sidebar-header { color: #ccc; font-size: 18rpx; text-align: center; font-weight: bold; margin-bottom: 6rpx; }
+.control-btn { height: 60rpx; background: rgba(0,0,0,0.4); color: #ccc; font-size: 20rpx; border-radius: 8rpx; display: flex; align-items: center; justify-content: center; border-left: 4rpx solid #666; box-shadow: 0 2rpx 5rpx rgba(0,0,0,0.3); }
+.control-btn:active { background: #444; transform: scale(0.95); }
+.control-btn.outline { border: 1rpx solid #666; background: transparent; border-left: none; }
+
+.main-floor { flex: 1; display: flex; flex-direction: column; padding-top: 20rpx; }
+
+/* 🌟 修改：4列布局 + 垂直均匀分布 */
+.table-grid { 
+  width: 100%; height: 100%; 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  column-gap: 20rpx; 
+  align-content: space-evenly; 
+  position: relative;
+}
+
+.table-unit { 
+  position: relative; aspect-ratio: 1; 
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.1s; 
+}
+.table-unit:active { transform: scale(0.9); }
+
+.chair-dots { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 3rpx dashed rgba(255,255,255,0.15); }
+.table-surface {
+  width: 80%; height: 80%; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0, #999); 
+  box-shadow: 0 5rpx 15rpx rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+  padding: 10rpx; box-sizing: border-box;
+}
+/* 🌟 修改：缩小文字以适应4列布局 */
+.table-text { color: #111; font-weight: bold; font-size: 16rpx; text-align: center; line-height: 1.1; word-break: break-all; }
+
+/* 🌟 修改：微调中机位大小 */
+.camera-center-float { 
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+  background: rgba(0,0,0,0.85); color: #1890ff; 
+  border: 1rpx solid #1890ff; padding: 6rpx 12rpx; 
+  border-radius: 30rpx; font-size: 18rpx; 
+  z-index: 20; backdrop-filter: blur(4rpx); 
+  box-shadow: 0 0 20rpx rgba(24,144,255,0.3); 
+}
+
+.activity-zone { margin-top: auto; padding: 30rpx; background: rgba(255,255,255,0.03); border-radius: 20rpx; border: 1rpx solid rgba(255,255,255,0.05); }
+.zone-title { color: #ccc; font-size: 20rpx; letter-spacing: 4rpx; margin-bottom: 20rpx; text-align: center; }
+.booth-grid { display: flex; justify-content: space-between; }
+.booth-item { display: flex; flex-direction: column; align-items: center; gap: 12rpx; z-index: 10; }
+.booth-item:active .icon-circle { transform: scale(0.9); opacity: 0.8; }
+.icon-circle { width: 70rpx; height: 70rpx; border-radius: 50%; background: #2a2a2a; display: flex; align-items: center; justify-content: center; font-size: 32rpx; border: 2rpx solid transparent; transition: all 0.3s; }
+.booth-item text { color: #ccc; font-size: 20rpx; }
+.icon-circle.blue { border-color: #1890ff; box-shadow: 0 0 10rpx rgba(24,144,255,0.2); }
+.icon-circle.gold { border-color: var(--primary-gold); }
+.icon-circle.green { border-color: #52c41a; }
+.icon-circle.pink { border-color: #eb2f96; }
+.icon-circle.red { border-color: #f5222d; }
+.icon-circle.purple { border-color: #722ed1; }

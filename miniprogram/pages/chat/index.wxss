@@ -1,0 +1,126 @@
+/* interaction.wxss */
+
+/* 1. 页面全局设置 */
+page {
+  background-color: #f6f7f9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding-bottom: 60rpx;
+}
+
+.container {
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 2. 顶部标题区 */
+.header {
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #888;
+}
+
+/* 3. 原因解释公告栏 (保持不变) */
+.notice-box {
+  background-color: #fff7e6;
+  border: 1rpx solid #ffd591;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  align-items: flex-start;
+}
+
+.notice-icon {
+  margin-right: 12rpx;
+  font-size: 30rpx;
+}
+
+.notice-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #d46b08;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* === 重点修改：变为四宫格网格布局 === */
+.steps-container {
+  display: grid;
+  /* 一行两列，每列等宽 */
+  grid-template-columns: repeat(2, 1fr);
+  /* 卡片之间的间距 */
+  grid-gap: 20rpx;
+}
+
+/* 5. 步骤卡片设计 (适配小卡片) */
+.step-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 20rpx; /* 减小内边距，节省空间 */
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  border: 1rpx solid rgba(0, 0, 0, 0.02);
+  
+  /* 让卡片内容垂直排列 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 步骤头部：因为卡片变窄，改为上下排列可能更好，这里保持左右但缩小字号 */
+.step-header {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 16rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.step-num {
+  background-color: #C8102E;
+  color: white;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx; /* 字体改小 */
+  font-weight: bold;
+  margin-right: 12rpx;
+  flex-shrink: 0; /* 防止序号被挤压 */
+}
+
+.step-desc {
+  font-size: 24rpx; /* 描述文字改小，防止换行过多 */
+  color: #333;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* 截图样式 */
+.step-image {
+  width: 100%;
+  border-radius: 8rpx;
+  border: 1rpx solid #eee;
+  /* 只有当图片加载后才能撑开高度，widthFix模式下不用设height */
+}
+
+/* 6. 底部提示 */
+.footer-tip {
+  text-align: center;
+  margin-top: 40rpx;
+}
+
+.footer-tip text {
+  color: #ccc;
+  font-size: 22rpx;
+}

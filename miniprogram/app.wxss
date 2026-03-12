@@ -1,0 +1,35 @@
+/** app.wxss **/
+page {
+  background-color: #f6f6f6; /* 浅灰底色，护眼 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  box-sizing: border-box;
+}
+
+/* 通用容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* 图片通用样式：宽度撑满 */
+.w-full-img {
+  width: 100%;
+  display: block; /* 消除图片底部留白 */
+}
+
+/* 红色主按钮样式 */
+.btn-primary {
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 40rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 10rpx rgba(255, 77, 79, 0.3);
+}
+.btn-primary:active {
+  background-color: #d9363e; /* 点击变暗 */
+}

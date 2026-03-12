@@ -1,0 +1,89 @@
+/* ... 保留之前的样式，追加以下内容 ... */
+/* 复用之前的CSS，将以下 Loading 样式加在最后即可 */
+
+page {
+  background-color: #f6f6f6;
+  padding-bottom: 60rpx;
+}
+.container { 
+  width: 100%; 
+  padding: 30rpx; 
+  box-sizing: border-box; 
+  display: flex; flex-direction: column; align-items: center; 
+}
+
+/* === Layout Box === */
+.layout-box { width: 100%; box-sizing: border-box; margin-bottom: 30rpx; }
+
+.header-section { text-align: center; margin-bottom: 30rpx; width: 100%; }
+.title { font-size: 36rpx; font-weight: bold; color: #333; margin-bottom: 8rpx; }
+.sub-title { font-size: 24rpx; color: #999; }
+
+/* === Loading Box === */
+.loading-box {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.loading-box .spinner {
+  width: 50rpx; height: 50rpx;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #ff4d4f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+.loading-box text { font-size: 26rpx; color: #999; }
+
+/* === 卡片样式 === */
+.status-card { background: #fff; border-radius: 20rpx; padding: 40rpx; text-align: center; box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05); }
+.label { font-size: 28rpx; color: #666; margin-bottom: 10rpx; }
+.big-num { font-size: 80rpx; font-weight: bold; color: #ff4d4f; line-height: 1.2; }
+.desc { font-size: 24rpx; color: #999; background: #f0f0f0; display: inline-block; padding: 4rpx 16rpx; border-radius: 20rpx; margin-top: 10rpx; }
+
+/* === 按钮区 === */
+.action-area { text-align: center; }
+.btn-upload {
+  width: 100%; background: linear-gradient(135deg, #ff4d4f, #d9363e); color: #fff; border-radius: 50rpx; font-size: 34rpx; font-weight: bold; padding: 24rpx 0; margin-bottom: 10rpx; box-shadow: 0 8rpx 20rpx rgba(255, 77, 79, 0.3); display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+}
+.btn-upload .icon { margin-right: 10rpx; font-size: 40rpx; }
+.btn-upload:active { transform: scale(0.98); }
+.btn-upload.disabled { background: #d9d9d9; box-shadow: none; color: #fff; }
+
+.btn-tip { font-size: 24rpx; color: #999; margin-top: 20rpx; }
+.btn-tip.warning { color: #ff4d4f; font-weight: bold; }
+.disabled-text { color: #ccc; }
+
+/* === Timeline === */
+.timeline-area { display: flex; flex-direction: column; }
+.status-row {
+  width: 100%; box-sizing: border-box; background: #fff; border: 1rpx solid #eee; border-radius: 12rpx; padding: 24rpx 30rpx; margin-bottom: 16rpx; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.02);
+}
+.row-left { display: flex; align-items: center; font-size: 28rpx; color: #333; font-weight: 500; }
+.row-left .icon { margin-right: 16rpx; font-size: 32rpx; }
+.row-left .fname { max-width: 300rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row-right { font-size: 26rpx; }
+.btn-withdraw { color: #ff4d4f; border: 1rpx solid #ff4d4f; padding: 6rpx 20rpx; border-radius: 30rpx; font-size: 24rpx; }
+.btn-withdraw:active { background: #fff1f0; }
+
+.success-text { color: #52c41a; font-weight: bold; }
+.highlight-val { color: #1890ff; font-weight: bold; }
+.highlight-val.blue { color: #1890ff; }
+.fade-in { animation: fadeIn 0.5s ease; }
+
+/* === 规则 === */
+.rules-box { border: 1rpx solid #eee; padding: 30rpx; background: rgba(255,255,255,0.6); }
+.rule-title { font-size: 28rpx; font-weight: bold; margin-bottom: 16rpx; color: #333; border-left: 6rpx solid #ff4d4f; padding-left: 12rpx; }
+.rule-item { font-size: 26rpx; color: #666; line-height: 1.8; margin-bottom: 6rpx; }
+.highlight { color: #ff4d4f; font-weight: bold; }
+
+.footer { margin-top: 40rpx; text-align: center; font-size: 22rpx; color: #ccc; width: 100%; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10rpx); } to { opacity: 1; transform: translateY(0); } }

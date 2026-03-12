@@ -1,0 +1,14 @@
+<view class="container">
+  <image 
+    src="{{posterUrl}}" 
+    mode="widthFix" 
+    class="poster-img"
+    bindtap="handlePreview"
+  ></image>
+
+  <view class="hint-text">
+    👆 点击图片可全屏查看，长按保存图片后微信扫一扫
+  </view>
+  
+  
+</view>

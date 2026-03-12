@@ -1,0 +1,106 @@
+<view class="container">
+  <image src="{{bgImage}}" class="bg-image" mode="aspectFill"></image>
+  <view class="bg-overlay"></view>
+
+  <view class="tab-header-pill">
+    <view class="tab-pill-item {{currentTab === 0 ? 'active' : ''}}" bindtap="handleSwitch" data-index="0">📅 节目单</view>
+    <view class="tab-pill-item {{currentTab === 1 ? 'active' : ''}}" bindtap="handleSwitch" data-index="1">📍 现场图</view>
+  </view>
+
+  <view class="content-body">
+    <view wx:if="{{currentTab === 0}}" class="program-container">
+      
+      <view class="main-title-box">
+        <view class="year-badge">2026</view>
+        <text class="title">大数据部新春晚会</text>
+        <view class="divider">
+          <view class="line"></view><text>GALA PROGRAM</text><view class="line"></view>
+        </view>
+      </view>
+
+      <view class="list-box">
+        <view class="timeline-line"></view>
+        <block wx:for="{{programList}}" wx:key="dept">
+          <view class="card {{item.category}}">
+            <view class="timeline-lantern">🏮</view>
+            
+            <view class="card-content">
+              <view class="card-top">
+                <view class="tag-group">
+                  <text class="dept-tag">{{item.dept}}</text>
+                  <text class="type-badge" wx:if="{{item.category !== 'speech'}}">{{item.type}}</text>
+                </view>
+                <view class="duration-box">
+                  <text class="clock-icon">🕒</text> {{item.duration}}
+                </view>
+              </view>
+              <view class="program-name">{{item.name}}</view>
+            </view>
+            
+            <view class="game-bg-icon" wx:if="{{item.category === 'game'}}">🎮</view>
+          </view>
+        </block>
+        
+        <view class="footer-text">Copyright © 2026 Big Data Dept.</view>
+        <view class="footer-text">京ICP备2026005287号</view>
+        <view style="height: 180rpx;"></view>
+      </view>
+
+      <view class="fab-map-btn" catchtap="handleSwitch" data-index="1">
+        <text class="fab-icon">📍</text>
+        <text>查看\n现场布局</text>
+      </view>
+    </view>
+
+    <view wx:if="{{currentTab === 1}}" class="layout-container">
+      
+      <view class="stage-area">
+        <view class="stage-glow"></view>
+        <view class="stage-box">
+          <text>MAIN STAGE</text>
+          <text class="stage-sub">新春盛典舞台</text>
+        </view>
+      </view>
+
+      <view class="seating-area">
+        <view class="sidebar-left">
+          <view class="sidebar-header">STAFF</view>
+          <view class="control-btn" bindtap="handleShowInfo" data-key="director">🎬 导演</view>
+          <view class="control-btn" bindtap="handleShowInfo" data-key="sound">🎵 音控</view>
+          <view class="control-btn" bindtap="handleShowInfo" data-key="stage">🔦 场务</view>
+          <view class="control-btn" bindtap="handleShowInfo" data-key="camera">📷 摄影</view>
+          <view class="control-btn outline" bindtap="handleShowInfo" data-key="mobile">⚡ 机动</view>
+        </view>
+
+        <view class="main-floor">
+          <view class="table-grid">
+            <block wx:for="{{tableList}}" wx:key="index">
+              <view class="table-unit" bindtap="handleTableClick" data-name="{{item}}">
+                <view class="chair-dots"></view>
+                <view class="table-surface">
+                  <text class="table-text">{{item}}</text>
+                </view>
+              </view>
+            </block>
+            <view class="camera-center-float" bindtap="handleShowInfo" data-key="camera">
+               <text>🎥 Center</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="activity-zone">
+        <view class="zone-title">SERVICE AREA</view>
+        <view class="booth-grid">
+           <view class="booth-item" bindtap="handleShowInfo" data-key="sign"><view class="icon-circle blue">✍️</view><text>签到</text></view>
+           <view class="booth-item" bindtap="handleShowInfo" data-key="drink"><view class="icon-circle gold">☕️</view><text>饮品</text></view>
+           <view class="booth-item" bindtap="handleShowInfo" data-key="halal"><view class="icon-circle green">🕌</view><text>清真</text></view>
+           <view class="booth-item" bindtap="handleShowInfo" data-key="food"><view class="icon-circle pink">🍰</view><text>茶歇</text></view>
+           <view class="booth-item" bindtap="handleShowInfo" data-key="print"><view class="icon-circle red">📸</view><text>打印</text></view>
+           <view class="booth-item" bindtap="handleShowInfo" data-key="ai"><view class="icon-circle purple">🤖</view><text>AI</text></view>
+        </view>
+      </view>
+      <view style="height: 40rpx;"></view>
+    </view>
+  </view>
+</view>

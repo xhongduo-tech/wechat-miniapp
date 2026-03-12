@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="header">
+    <text class="title">如何发送弹幕？</text>
+    <text class="subtitle">简单4步，让全场看到你的声音</text>
+  </view>
+
+  <view class="notice-box">
+    <view class="notice-icon">📢</view>
+    <text class="notice-text">因微信小程序个人开发者UGC限制，我们无法直接提供弹幕功能。请各位同志们按照如下流程发布弹幕，谢谢！</text>
+  </view>
+
+  <view class="steps-container">
+    <block wx:for="{{steps}}" wx:key="index">
+      <view class="step-card">
+        <view class="step-header">
+          <text class="step-num">Step {{index + 1}}</text>
+          <text class="step-desc">{{item.description}}</text>
+        </view>
+        
+        <image 
+          class="step-image" 
+          src="{{item.imageSrc}}" 
+          mode="widthFix" 
+          data-src="{{item.imageSrc}}"
+          bindtap="previewImage"
+        ></image>
+        </view>
+    </block>
+  </view>
+  
+  <view class="footer-tip">
+    <text>🎉 期待看到你的精彩发言！</text>
+  </view>
+</view>

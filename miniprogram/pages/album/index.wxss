@@ -1,0 +1,36 @@
+/* 页面背景纯白 */
+page {
+  background-color: #ffffff;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60rpx; /* 底部留出一点呼吸空间 */
+}
+
+/* 图片：宽度100%，消除底部默认间隙 */
+.poster-img {
+  width: 100%;
+  display: block;
+}
+
+/* 提示文字样式 */
+.hint-text {
+  margin-top: 40rpx; /* 距离图片远一点 */
+  font-size: 28rpx;
+  color: #555555;
+  background-color: #f8f8f8; /* 加个淡灰背景让文字更聚拢 */
+  padding: 16rpx 40rpx;
+  border-radius: 40rpx;
+  text-align: center;
+}
+
+/* 版权样式 */
+.copyright {
+  margin-top: 30rpx;
+  font-size: 22rpx;
+  color: #cccccc;
+}

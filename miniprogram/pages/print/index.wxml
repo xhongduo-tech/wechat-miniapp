@@ -1,0 +1,94 @@
+<view class="container">
+  
+  <view class="header-section">
+    <view class="title">🖨️ 照片打印服务</view>
+    <view class="sub-title">Canon CP1500 高清专业相片打印机</view>
+  </view>
+
+  <view class="loading-box" wx:if="{{isLoading}}">
+    <view class="spinner"></view>
+    <text>正在同步排队数据...</text>
+  </view>
+
+  <block wx:else>
+
+    <view class="layout-box status-card">
+      <view class="label">当前排队任务数</view>
+      <view class="big-num">{{totalWaiting}}</view>
+      <view class="desc">预计等待 {{totalWaiting * 2}} 分钟</view>
+    </view>
+
+    <view class="layout-box action-area">
+      <button 
+        class="btn-upload {{step === 'idle' ? '' : 'disabled'}}" 
+        bindtap="{{step === 'idle' ? 'handleUpload' : 'handleDisabledClick'}}"
+      >
+        <text class="icon" wx:if="{{step === 'idle'}}">📷</text>
+        <text class="icon" wx:else>✅</text>
+        <text>{{step === 'idle' ? '上传照片排队' : '已上传 / 处理中'}}</text>
+      </button>
+      
+      <view class="btn-tip warning" wx:if="{{step === 'idle'}}">⚠️ 每人活动期间仅限打印 1 张</view>
+      <view class="btn-tip" wx:if="{{step === 'idle'}}">请务必精选最满意的一张照片，不限照片来源</view>
+      <view class="btn-tip disabled-text" wx:else>您已在使用打印权益</view>
+    </view>
+
+    <view class="layout-box timeline-area" wx:if="{{step !== 'idle'}}">
+      
+      <view class="status-row">
+        <view class="row-left">
+          <text class="icon">🖼️</text>
+          <text class="fname">{{fileName}}</text>
+        </view>
+        <view class="row-right">
+          <view class="btn-withdraw" wx:if="{{step === 'countdown'}}" bindtap="handleWithdraw">
+            撤回 ({{timeLeft}}s)
+          </view>
+          <text class="success-text" wx:else>上传成功</text>
+        </view>
+      </view>
+
+      <view class="status-row fade-in" wx:if="{{step === 'process' || step === 'finished'}}">
+        <view class="row-left">
+          <text class="icon">⏳</text>
+          <text>系统正在排队</text>
+        </view>
+        <view class="row-right">
+          <text class="success-text" wx:if="{{step === 'finished' || printStatus === 'printing'}}">排队完成</text>
+          <text class="highlight-val" wx:else>前方 {{frontCount}} 人</text>
+        </view>
+      </view>
+
+      <view class="status-row fade-in" wx:if="{{(printStatus === 'printing' && step === 'process') || step === 'finished'}}">
+        <view class="row-left">
+          <text class="icon">🖨️</text>
+          <text>正在打印</text>
+        </view>
+        <view class="row-right">
+          <text class="success-text" wx:if="{{step === 'finished'}}">打印完成</text>
+          <text class="highlight-val blue" wx:else>输出中...</text>
+        </view>
+      </view>
+
+      <view class="status-row fade-in" wx:if="{{step === 'finished'}}">
+        <view class="row-left">
+          <text class="icon">✅</text>
+          <text>请在后方打印区领域相片</text>
+        </view>
+        <view class="row-right">
+          <text class="success-text">已完成</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="layout-box rules-box">
+      <view class="rule-title">特别说明</view>
+      <view class="rule-item">1. 每位同事仅有 <text class="highlight">1次</text> 打印权益，不限照片来源。</view>
+      <view class="rule-item">2. 仅支持 <text class="highlight">6寸 (4R)</text> 照片。</view>
+      <view class="rule-item">3. 耗材珍贵，打印时间较长，请耐心等待。</view>
+    </view>
+  </block>
+
+  <view class="footer">最终解释权归大数据部摄影团队所有 2026.02</view>
+</view>

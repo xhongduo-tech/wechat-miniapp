@@ -1,0 +1,28 @@
+<view class="container">
+  
+  <image 
+    src="{{headerImg}}" 
+    mode="widthFix" 
+    class="header-img"
+  ></image>
+
+  <view class="list-area">
+    <block wx:for="{{teamList}}" wx:key="role">
+      <view class="team-card">
+        <view class="card-bar"></view>
+        
+        <view class="card-content">
+          <view class="role-title">{{item.role}}</view>
+          <view class="member-names">{{item.members}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="footer-thanks">
+    <text>清单并不完整，还有很多伙伴们在默默付出</text>
+    <text>❤️ 感谢每一位为活动付出的伙伴 ❤️</text>
+    <view class="copyright">@ 2026.02 大数据部</view>
+  </view>
+
+</view>
